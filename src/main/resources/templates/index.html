@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SM Estates</title>
+    <link href="/css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+
+</head>
+<body>
+<div class="header">
+    <h1>SM REAL ESTATES</h1>
+</div>
+<div class="navbar">
+    <a href="/new" th:href="@{'/new'}" class="right">Create New Estates</a>
+</div>
+    <div class=row>
+        <div class="side">
+            <h3>Gallery</h3>
+            <div class="fakeimg" style="height:200px;"><img src="../static/images/estate1.png" th:src="@{images/estate1.png}"/></div><br>
+            <div class="fakeimg" style="height:200px;"><img src="../static/images/estate2.png" th:src="@{images/estate2.png}"/></div><br>
+            <div class="fakeimg" style="height:200px;"><img src="../static/images/estate3.png" th:src="@{images/estate3.png}"/></div>
+        </div>
+        <div class="main" align="center">
+
+            <table border="1" cellpadding="10">
+                <thead>
+                <tr>
+                    <th>Estate ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>City</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="estate : ${listEstates}">
+                    <td th:text="${estate.id}">Estate ID</td>
+                    <td th:text="${estate.name}">Name</td>
+                    <td th:text="${estate.type}">Type</td>
+                    <td th:text="${estate.city}">City</td>
+                    <td th:text="${estate.price}">Price</td>
+                    <td>
+                        <a th:href="@{'/edit/' + ${estate.id}}">Edit</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a th:href="@{'/delete/' + ${estate.id}}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
